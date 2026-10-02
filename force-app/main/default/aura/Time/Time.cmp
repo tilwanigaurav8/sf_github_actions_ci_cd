@@ -1,0 +1,9 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <aura:attribute name="date" type="Date" />
+    
+    <aura:handler name="init" action="{!c.myAction}" value="{!this}" />
+    
+    <h1>
+        {!v.date}
+    </h1>
+</aura:component>

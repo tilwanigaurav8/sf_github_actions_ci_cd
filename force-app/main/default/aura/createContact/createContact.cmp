@@ -1,0 +1,10 @@
+<aura:component controller="VishalK" implements="flexipage:availableForRecordHome,force:hasRecordId" access="global">
+    <aura:attribute name="LastName" type="String" />
+    <aura:attribute name="FirstName" type="String" />
+    <aura:attribute name="error"  type="String"/>
+    
+        <lightning:input label="FistName" name="fname" value="{!v.FirstName}"></lightning:input>
+        <lightning:input label="LastName" name="lname" value="{!v.LastName}"></lightning:input>
+        <lightning:button onclick="{!c.myAction}" label="submit"></lightning:button>
+    
+</aura:component>

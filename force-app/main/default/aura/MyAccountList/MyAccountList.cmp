@@ -1,0 +1,12 @@
+<aura:component controller="MyAccountController" implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="Name" type="String" />
+    <aura:attribute name="Phone" type="String" />
+    <aura:attribute name="Account" type="Account" />
+    <aura:attribute name="accountDetails" type="List" />
+    <aura:handler name="init" action="{!c.myAction}" value="{!this}" />
+
+    <lightning:card iconName="standard:account" title="Account Details">
+        <lightning:datatable data="{!v.Account}" columns="{!v.accountDetails}" keyField="Id" hideCheckboxColumn="false" />
+    </lightning:card>
+</aura:component>
