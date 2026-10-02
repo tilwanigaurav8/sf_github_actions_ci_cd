@@ -1,0 +1,23 @@
+<template>
+    <!-- <lightning-card title="Purchase History" icon-name="custom:custom14">
+        <ul>
+            <template for:each={records.data} for:item="record">
+                <li key={record.Id}>{record.Id}</li>
+                <li key={record.Id}>{record.Status__c}</li>
+                <li key={record.Id}>{record.expr0}</li>
+            </template>
+        </ul>
+        
+        
+    </lightning-card> -->
+
+    <!-- <lightning:card  title="Purchase History">
+        Contact list goes here  -->
+        <!-- <<lightning:datatable data= columns="" keyField="Id" hideCheckboxColumn="true"/> -->
+
+    <!-- </lightning:card> -->
+
+    <lightning-card title="Purchase History">
+        <lightning-datatable data={records.data} columns={setColumns}></lightning-datatable>
+    </lightning-card>
+</template>

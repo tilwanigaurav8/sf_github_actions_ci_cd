@@ -1,0 +1,129 @@
+<template>
+
+    <template lwc:if={showPurchaseOrders}>
+        <lightning-card title="My Orders" icon-name="custom:custom63">
+        
+            <lightning-button slot="actions" variant="brand" label="Add new Purchase Order" title="Primary action" onclick={addNewPurcheseOrder} class="slds-m-left_x-small"></lightning-button>
+    
+            <div class="slds-var-m-around_medium">
+                <template if:true={visiblePurchaseOrderData}>
+                    <!-- Purchase Order  table -->
+                    <lightning-datatable
+                        key-field="id"
+                        data={visiblePurchaseOrderData}
+                        columns={columns}
+                        default-sort-direction={defaultSortDirection}
+                        sorted-direction={sortDirection}
+                        sorted-by={sortedBy}
+                        onsort={onHandleSort}>
+                    </lightning-datatable>
+                </template>
+                <div slot="footer" class="slds-var-m-vertical_medium">
+                    <c-pagination records={totalOrderData} record-size='3' onupdate={updatePurchaseOrderHandler}></c-pagination>
+                </div>
+            </div>
+        </lightning-card>
+    </template>
+    
+    
+    <template lwc:if={showProducts}>
+        <lightning-card title="Products" icon-name="custom:custom63">
+        
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_2-of-3">
+                    <div onkeyup={handleKeyUp}>
+                        <lightning-input
+                            name="enter-search"
+                            placeholder="Search Products"
+                              type="search"
+                        ></lightning-input>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_1-of-3">
+                    <lightning-button variant="brand" label="Go To Cart" title="Primary action" onclick={goToCart} class="slds-m-left_x-small"></lightning-button>
+                </div>
+            </div>
+            
+            <div class="slds-var-m-around_medium">
+                <template if:true={visibleProductData}>
+                    <!-- Purchase Order  table -->
+                    <lightning-datatable
+                        key-field="id"
+                        data={visibleProductData}
+                        columns={productColumns}
+                        default-sort-direction={defaultSortDirection}
+                        sorted-direction={sortDirection}
+                        sorted-by={sortedBy}
+                        onsort={onHandleSort}
+                        onrowselection={getSelectedName}>
+                    </lightning-datatable>
+                </template>
+                <div slot="footer" class="slds-var-m-vertical_medium">
+                    <c-pagination records={totalProductData} record-size='3' onupdate={updateProductHandler}></c-pagination>
+                </div>
+            </div>
+        </lightning-card>
+    </template>
+
+
+    <template lwc:if={showCart}>
+        <lightning-card title="Cart" icon-name="custom:custom63">
+        
+            
+            <div class="slds-var-m-around_medium">
+                <template if:true={selectedProductRows}>
+                    <!-- Purchase Order  table -->
+                    <lightning-datatable
+                        key-field="id"
+                        data={selectedProductRows}
+                        columns={cartColumns}
+                        default-sort-direction={defaultSortDirection}
+                        sorted-direction={sortDirection}
+                        sorted-by={sortedBy}
+                        onsort={onHandleSort}
+                        onrowaction={handleRowAction}
+                        >
+                    </lightning-datatable>
+                </template>
+                <div slot="footer" class="slds-var-m-vertical_medium">
+                    <lightning-button variant="brand" label="CheckOut" title="Primary action" onclick={checkOut} class="slds-m-left_x-small"></lightning-button>
+                </div>
+            </div>
+        </lightning-card>
+    </template>
+
+
+    <template lwc:if={showInvoice}>
+        <lightning-card title="Invoice" icon-name="custom:custom63">
+        
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_2-of-3">
+                    Invoice no: # {invoiceNo}
+                </div>
+                <div class="slds-col slds-size_1-of-3">
+                    Order Date : <lightning-formatted-date-time value={currentDate} ></lightning-formatted-date-time>
+                </div>
+            </div>
+            
+            <div class="slds-var-m-around_medium">
+                <template if:true={selectedProductRows}>
+                    <!-- Purchase Order  table -->
+                    <lightning-datatable
+                        key-field="id"
+                        data={selectedProductRows}
+                        columns={invoiceColumns}
+                        hide-checkbox-column
+                        default-sort-direction={defaultSortDirection}
+                        sorted-direction={sortDirection}
+                        sorted-by={sortedBy}
+                        onsort={onHandleSort}>
+                    </lightning-datatable>
+                </template>
+                <div slot="footer" class="slds-var-m-vertical_medium">
+                    <lightning-button variant="brand" label="Place Order" title="Primary action" onclick={placeOrder} class="slds-m-left_x-small"></lightning-button>
+                </div>
+            </div>
+        </lightning-card>
+    </template>
+    
+</template>
